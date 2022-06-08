@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            @include('comment::comment-list-child', ['comments' => $comment->comments, 'nowIndentation' => ++$indentation])
+            @include('venodr.comment.comment-list-child', ['comments' => $comment->comments, 'nowIndentation' => ++$indentation])
 
         </div>
     @endforeach
