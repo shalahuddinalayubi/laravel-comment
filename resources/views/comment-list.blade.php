@@ -43,5 +43,5 @@
         </div>
     </div>
 
-    @include('comment::comment-list-child', ['comments' => $comment->comments])
+    @include('vendor.comment.comment-list-child', ['comments' => $comment->comments])
 @endforeach
