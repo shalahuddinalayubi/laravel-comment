@@ -12,7 +12,6 @@ class DefaultValidator extends Validator
     public function data()
     {
         return [
-            'user_id' => $this->commentator->id,
             'comment' => $this->request->get('comment'),
         ];
     }
@@ -25,7 +24,6 @@ class DefaultValidator extends Validator
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'comment' => 'required',
         ];
     }

@@ -13,9 +13,16 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
+        Schema::create('user_comments', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('commentable');
+            $table->timestamps();
+        });
+
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_comment_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->text('comment');
             $table->morphs('commentable');
             $table->timestamps();

@@ -2,13 +2,15 @@
 
 namespace Lara\Comment;
 
+use Lara\Comment\UserComment;
+
 trait Commentator
 {
     /**
-     * Get the comments for the model.
+     * Get the userComment.
      */
-    public function comments()
+    public function userComment()
     {
-        return $this->hasMany(config('comment.comment'));
+        return $this->morphOne(UserComment::class, 'commentable');
     }
 }

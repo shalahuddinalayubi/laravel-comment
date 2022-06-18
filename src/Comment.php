@@ -17,16 +17,33 @@ class Comment extends Model implements IsCommentable
      */
     protected $fillable = [
         'comment',
-        'user_id',
+        'user_comment_id',
     ];
 
+    /**
+     * Get the parent commentable model.
+     * 
+     * @return mixed
+     */
     public function commentable()
     {
         return $this->morphTo();
     }
 
-    public function user()
+    public function userComment()
     {
-        return $this->belongsTo(config('comment.commentator'));
+        return $this->belongsTo(UserComment::class);
+    }
+
+    /**
+     * Get owner of a comment.
+     * 
+     * @return mixed
+     */
+    public function owner()
+    {
+        return $this->belongsTo(UserComment::class, 'user_comment_id')
+                    ->getResults()
+                    ->commentable;
     }
 }

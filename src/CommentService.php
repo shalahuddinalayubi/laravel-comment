@@ -132,7 +132,11 @@ class CommentService
      */
     public function store()
     {
-        return $this->commentable->comments()->create($this->validated());
+        $data = $this->validated();
+        
+        $data['user_comment_id'] = $this->commentator->userComment()->firstOrCreate()->id;
+
+        return $this->commentable->comments()->create($data);
     }
 
     /**
